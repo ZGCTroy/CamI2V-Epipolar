@@ -1,20 +1,20 @@
 # RealCam-I2V
 
 <div align="center">
-    <a href="https://arxiv.org/abs/2502.10059"><img src="https://img.shields.io/static/v1?label=arXiv&message=2502.10059&color=b21d1a"></a>
-    <a href="https://zgctroy.github.io/RealCam-I2V"><img src="https://img.shields.io/static/v1?label=Project&message=Page&color=green"></a>
+    <!-- <a href="https://arxiv.org/abs/2502.10059"><img src="https://img.shields.io/static/v1?label=arXiv&message=2502.10059&color=b21d1a"></a>
+    <a href="https://zgctroy.github.io/RealCam-I2V"><img src="https://img.shields.io/static/v1?label=Project&message=Page&color=green"></a> -->
     <a href="https://github.com/ZGCTroy/RealCam-Vid"><img src="https://img.shields.io/static/v1?label=Dataset&message=RealCam-Vid&color=blue"></a>
 </div>
 
-[ICCV'25] Official repo of "RealCam-I2V: Real-World Image-to-Video Generation with Interactive Complex Camera Control".
+Official repo of CamI2V-Epipolar based on CogVideox1.5-5B-I2V.
 
-## 🌟 News
+<!-- ## 🌟 News
 
 - 25/07/05: Release inference code and checkpoints of RealCam-I2V on CogVideoX 1.5 for exploration. The results we report in the [paper](https://arxiv.org/abs/2502.10059) are based on DynamiCrafter, for full reproduction and [evaluation](https://github.com/ZGCTroy/CamI2V/tree/main/evaluation), please refer to our previous repo [CamI2V](https://github.com/ZGCTroy/CamI2V).
 - 25/06/26: RealCam-I2V is accepted by ICCV 2025! 🎉🎉
 - 25/05/18: Release training code of RealCam-I2V on CogVideoX 1.5.
 - 25/03/26: Release our dataset [RealCam-Vid](https://huggingface.co/datasets/MuteApo/RealCam-Vid) v1 for metric-scale camera-controlled video generation!
-- 25/02/18: Initial commit of the project, we plan to release our DiT-based real-camera I2V models (e.g., CogVideoX) in this repo.
+- 25/02/18: Initial commit of the project, we plan to release our DiT-based real-camera I2V models (e.g., CogVideoX) in this repo. -->
 
 ## ⚙️ Environment
 
@@ -37,10 +37,10 @@ pip install -r requirements.txt --extra-index-url https://download.pytorch.org/w
 
 Download and put under `pretrained` folder the pretrained weights of [CogVideoX1.5-5B-I2V](https://huggingface.co/THUDM/CogVideoX1.5-5B-I2V), [Metric3D](https://huggingface.co/JUGGHM/Metric3D) and [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct).
 
-### Download Model Checkpoints
+<!-- ### Download Model Checkpoints
 
 Download our weights of [RealCam-I2V](https://huggingface.co/MuteApo/RealCam-I2V) and put under `checkpoints` folder.
-Please edit `demo/models.json` if you have a custom model path.
+Please edit `demo/models.json` if you have a custom model path. -->
 
 ### Run Gradio Demo
 
@@ -67,11 +67,9 @@ For CogVideoX 1.5, we precompute latents before training.
 ## 🤗 Related Repo
 
 - Our dataset, the first open-sourced, combining diverse scene dynamics with metric-scale camera trajectories, is available at [RealCam-Vid](https://github.com/ZGCTroy/RealCam-Vid).
-- Our previous work at [CamI2V](https://github.com/ZGCTroy/CamI2V).
-- We have borrowed a lot of code from the original [CogVideoX](https://github.com/THUDM/CogVideo) repository.
 
-## 🗒️ Citation
 
+<!-- ## 🗒️ Citation
 ```
 @article{li2025realcam,
     title={RealCam-I2V: Real-World Image-to-Video Generation with Interactive Complex Camera Control}, 
@@ -92,5 +90,5 @@ For CogVideoX 1.5, we precompute latents before training.
     author={Zheng, Guangcong and Li, Teng and Jiang, Rui and Lu, Yehao and Wu, Tao and Li, Xi},
     journal={arXiv preprint arXiv:2410.15957},
     year={2024}
-}
-```
+} 
+``` -->
