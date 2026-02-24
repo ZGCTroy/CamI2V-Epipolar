@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="CamI2V, a camera-controllable image-to-video diffusion model enhanced by explicit geometry constraint.">
+    <meta property="og:title" content="CamI2V-Epipolar: Epipolar-constrained Block Sparse Attention for Camera-Controlled Image-to-Video Diffusion Model" />
+    <meta property="og:description" content="CamI2V, a camera-controllable image-to-video diffusion model enhanced by explicit geometry constraint." />
+    <meta property="og:url" content="https://zgctroy.github.io/CamI2V/" />
+
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+
+
+    <meta name="twitter:title" content="CamI2V-Epipolar: Epipolar-constrained Block Sparse Attention for Camera-Controlled Image-to-Video Diffusion Model">
+    <meta name="twitter:description" content="CamI2V, a camera-controllable image-to-video diffusion model enhanced by explicit geometry constraint.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="CamI2V, Camera Control, Image-to-Video, Video Diffusion Model">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>CamI2V-Epipolar: Epipolar-constrained Block Sparse Attention for Camera-Controlled Image-to-Video Diffusion Model</title>
+    <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']]
+            }
+        });
+    </script>
+
+    <style>
+        .video-container {
+            display: flex;
+            justify-content: center;
+            gap: 0px;
+        }
+
+        .italic {
+            font-family: 'Playfair Display';
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- title and author -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">CamI2V-Epipolar: Epipolar-constrained Block Sparse Attention for Camera-Controlled Image-to-Video Diffusion Model</h1>
+                        <!-- <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                            </span>
+                        </div> -->
+
+                        <!-- <div class="is-size-5 publication-authors">
+                            <span class="author-block">Institution Name<br>Conferance name and year</span>
+                            <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                        </div> -->
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">*Under Review</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2410.15957.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span> -->
+
+                                <span class="link-block">
+                                    <a href="https://github.com/ZGCTroy/CamI2V-Epipolar" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+
+                                <!-- <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2410.15957" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- first image -->
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <img src="https://github.com/user-attachments/assets/65f2d8c4-9d5a-4443-8173-762e14329041" width="100%" />
+                <h2 class="subtitle has-text-justified">
+                    <b>Rethinking condition in diffusion models.</b>
+                    Diffusion models denoise along the gradient of log probability density function.
+                    At large noise levels, the high density region becomes the overlap of numerous noisy samples, resulting in visual blurriness.
+                    We point out that <b><em style="font-family: Times New Roman;">the effectiveness of a condition depends on how much uncertainty it reduces</em></b>.
+                    From a new perspective, we categorize conditions into <b><em style="font-family: Times New Roman;">clean conditions</em></b> (e.g. texts, camera extrinsics) that remain visible throughout the denoising process, and <b><em style="font-family: Times New Roman;">noised conditions</em></b> (e.g. noised pixels in the current and other frames) whose deterministic information $\alpha_t x_0$ will be gradually dominated by the randomness of noise $\sigma_t \epsilon$.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Recently, camera pose has emerged as a physics-informed condition for video diffusion models. Existing methods that directly adopt 3D full attention for cross-frame feature interaction achieve moderate camera controllability with extensive training, yet camera controllability and geometric consistency remain a challenge in complex scenarios such as large camera rotation or movement. This underscores the value of integrating physical priors into attention mechanisms. Instead of pixel-level attention masking, we propose a key innovation to infuse epipolar geometric priors into the block selection of video block sparse attention. This design resolves memory and speed bottlenecks at high resolutions like 768P, enables compatibility with FlashAttention-3, and establishes a principled framework for embedding physical priors into sparse attention mechanisms. Experiments on static RealEstate10K and dynamic RealCam-Vid datasets demonstrate that our method outperforms the state-of-the-art RealCam-I2V, effectively enhancing camera controllability while preserving generation quality and generalization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- attention comparison -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <h2 class="title is-3 has-text-centered">Attention Mechanisms for Tracking Displaced Noised Features</h2>
+                <img src="https://github.com/user-attachments/assets/075ecfdf-d55a-42bb-9419-4031d5198b31" width="100%" />
+                <h2 class="subtitle has-text-justified">
+                    Temporal attention is limited to features at the same location of picture, rendering it ineffective for significant camera movements.
+                    In contrast, 3D full attention facilitates cross-frame tracking due to its broad receptive field.
+                    However, high noise levels can obscure deterministic information, hindering consistent tracking.
+                    Our proposed epipolar attention aggregates features along the epipolar line, effectively modeling cross-frame relationships even under high noise conditions.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- cam_to_ray -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <h2 class="title is-3 has-text-centered">Camera parameterization</h2>
+                <img src="https://github.com/user-attachments/assets/6becf5de-f948-4da5-9648-f65620f761dd" width="100%" />
+                <h2 class="subtitle has-text-justified">
+                    Parameterizations for cameras. Left: Camera representation and trajec-
+tory visualization in the world coordinate system. Right: The transformation
+from camera representations to 3D ray representations as Pl¨ ucker coordinates
+given pixel coordinates
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero">
+        <!-- epipolar line and mask -->
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <h2 class="title is-3 has-text-centered">Block-level Epipolar Line and Mask</h2>
+                <img src="https://github.com/user-attachments/assets/ca7bd26d-f407-4616-a5a4-8ccc7873a484" width="100%" />
+                <h2 class="subtitle has-text-justified">
+                    Illustration of block-level epipolar line and mask. Larger block size
+leads to smaller block feature size, detailed in II-B3.
+                </h2>
+            </div>
+        </div>
+
+        <!-- epipolar attention mask -->
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <h2 class="title is-3 has-text-centered">Epipolar constraint in block selection stage of video
+block sparse attention</h2>
+                <img src="https://github.com/user-attachments/assets/fe004236-1410-499a-b625-c1eafc96ca7f" width="100%" />
+                <h2 class="subtitle has-text-justified">
+                    Illustration of epipolar constraint in block selection stage of video
+block sparse attention, detailed in II-B4.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- pipeline -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <h2 class="title is-3 has-text-centered">Pipeline of CamI2V-Epipolar (on CogVideoX1.5-5B-I2V)</h2>
+                <img src="https://github.com/user-attachments/assets/4d700d2d-7b19-4778-a2a9-1eb808f0a002" width="100%" />
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero">
+
+        <div class="container has-text-centered">
+            <h2 class="title is-3">Training Dataset</h2>
+            <h3 class="subtitle">
+                CamI2V-Epipolar based on Dynamicrafter is trained on static RealEstate10K.
+                <br>
+                CamI2V-Epipolar based on CogVideox5B-I2V is trained on dynamic RealCam-Vid.
+            </h3>
+
+            <!-- Row 1 -->
+            <div class="video-container">
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/d198291c-4bdb-4678-b396-5accbcf903c9" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        RealEstate10K
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/258a13e3-1e14-4535-9e7f-017fa0639376" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        RealCam-Vid
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/314f44ed-14d9-4097-ae9f-4750f6a9157e" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        RealCam-Vid
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/51af2474-d1bb-4c90-85c9-e4312c38d093" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        RealCam-Vid
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/51af2474-d1bb-4c90-85c9-e4312c38d093" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        RealCam-Vid
+                    </h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section hero">
+
+        <div class="container has-text-centered">
+            <h2 class="title is-3">Out-of-domain Generation </h2>
+            <h3 class="subtitle">
+                *Generated by 512\(\times\)320, Dynamicrafter (50k training steps), compatible with input images of arbitary aspect ratio.
+            </h3>
+
+             <div class="video-container">
+
+                <video autoplay controls muted loop>
+                    <source src="https://github.com/user-attachments/assets/6c324a13-36bf-4ba5-af52-fae11e83f289" type="video/mp4" />
+                </video>
+
+            </div>
+
+            <!-- Row 1 -->
+            <div class="video-container">
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/d198291c-4bdb-4678-b396-5accbcf903c9" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Pan Left
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/258a13e3-1e14-4535-9e7f-017fa0639376" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Pan Right
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/314f44ed-14d9-4097-ae9f-4750f6a9157e" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Pan Up
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/51af2474-d1bb-4c90-85c9-e4312c38d093" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Pan Down
+                    </h2>
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- Row 2 -->
+            <div class="video-container">
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/2d96494e-2392-4879-88c5-36326923eaa7" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Look Left
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/632196ba-1b18-42f4-9116-26d36be52f22" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Look Right
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/fc1c601f-984b-4651-b614-5f8598b1839b" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Orbit Left
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/d71b78e7-cb20-45d2-9dea-2b17118ec226" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Orbit Right
+                    </h2>
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- Row 3 -->
+            <div class="video-container">
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/9b425c29-8d82-49d7-b11a-eb20883d33cb" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Zoom In & Rotate
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/3077d283-7bf3-449f-9a85-b6df8ffac569" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Pan Left & Zoom
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/a34e3cef-ab14-4ddb-a431-31979fff1ab5" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Forward &#8594; Backward
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/0e23cd12-2b4e-4d92-b796-d5329e67854e" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Walking
+                    </h2>
+                </div>
+
+
+            </div>
+
+
+            <br>
+
+            <h3 class="subtitle">
+                *Generated by 256\(\times\)256, Dynamicrafter (50k training steps).
+            </h3>
+
+            <div class="video-container">
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/d109d396-4d88-4f24-b165-c9fa50b02726" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Orbit Left
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/650033bd-04b5-4fb1-8c97-f45edd13271e" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Orbit Right
+                    </h2>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="video-container">
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/a0ab6e49-c1da-4768-b76d-8e2069cbe898" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Zoom In
+                    </h2>
+                </div>
+
+                <div>
+                    <video autoplay controls muted loop>
+                        <source src="https://github.com/user-attachments/assets/9f9622c6-528a-4e3f-bf22-d9d8567cb7f5" type="video/mp4" />
+                    </video>
+                    <h2 class="subtitle has-text-centered italic">
+                        Zoom Out
+                    </h2>
+                </div>
+
+            </div>
+
+        </div>
+
+       
+    </section>
+
+
+    <!-- in domain -->
+    <section class="section hero is-small">
+        <div class="container has-text-centered">
+            <h2 class="title is-3">Visualization on training dataset: RealEstate10K (256\(\times\)256, Dynamicrafter) </h2>
+
+            <div class="video-container">
+
+                <video autoplay controls muted loop>
+                    <source src="https://github.com/user-attachments/assets/2b6c4b63-6957-4bf0-8591-c2fa42277bb6" type="video/mp4" />
+                </video>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>BibTex Code Here</code></pre>
+        </div>
+    </section> -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the 
+                            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> 
+                            which was adopted from the 
+                            <a href="https://nerfies.github.io" target="_blank">Nerfies</a>
+                            project page.
+                            You are free to borrow the source code of this website, we just ask that you link back to
+                            this page in the footer. <br> 
+                            This website is licensed under a 
+                            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+                            Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
